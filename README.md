@@ -54,14 +54,14 @@ http:\\localhost:8081\products\{id} (delete) deletes if found a specified Produc
 http:\\localhost:8081\recommendations (post) returns list of all recommended products to customer
 
 ### CustomerDto
-
+```
 {
 	"age":int,
 	"student":boolean,
 	"income":double
 	
 }
-
+```
 ### Testing
 
 To run test cases repeat steps 1,2 then type:
