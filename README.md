@@ -37,7 +37,7 @@ To run image locally you would also need to specify ports:
 docker run -p 8081:8080 aurrix/seb:product-adviser
 ```
 
-###CRUD Operations 'Product'
+### CRUD Operations 'Product'
 
 http:\\localhost:8081\products (get) - returns list of all Products
 
@@ -49,7 +49,7 @@ http:\\localhost:8081\products\{id} (put) accepts plain JSON updates specified P
 
 http:\\localhost:8081\products\{id} (delete) deletes if found a specified Product
 
-###Recommendation Endpoint
+### Recommendation Endpoint
 
 http:\\localhost:8081\recommendations (post) returns list of all recommended products to customer
 
