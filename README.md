@@ -23,7 +23,7 @@ GRADLE 5.6
 ```
 gradle build
 ```
-4. Gradle will generate jar at ../insurance-policies/build/libs/
+4. Gradle will generate jar at ../product-adviser/build/libs/
 
 ### Lombok Annotaion Processing
 
