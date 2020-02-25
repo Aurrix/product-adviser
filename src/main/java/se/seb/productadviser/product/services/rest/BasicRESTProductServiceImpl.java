@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import se.seb.productadviser.global.exceptions.NotFoundException;
 import se.seb.productadviser.product.Product;
 import se.seb.productadviser.product.dto.ProductDto;
 import se.seb.productadviser.product.repository.ProductRepository;
@@ -32,7 +33,11 @@ public class BasicRESTProductServiceImpl implements RESTProductService {
 
   @Override
   public ResponseEntity<ProductDto> getOne(String id) {
-    return ResponseEntity.ok(modelMapper.map(productRepository.findById(id), ProductDto.class));
+    Product product = productRepository.findById(id);
+    if (product == null) {
+      throw new NotFoundException();
+    }
+    return ResponseEntity.ok(modelMapper.map(product, ProductDto.class));
   }
 
   @Override
@@ -55,6 +60,9 @@ public class BasicRESTProductServiceImpl implements RESTProductService {
   @Override
   public ResponseEntity<Void> putOne(ProductDto productDto, String id) {
     Product product = productRepository.findById(id);
+    if (product == null) {
+      throw new NotFoundException();
+    }
     modelMapper.map(productDto, product);
     productRepository.save(product);
     return ResponseEntity.accepted().build();
@@ -64,9 +72,10 @@ public class BasicRESTProductServiceImpl implements RESTProductService {
   public ResponseEntity<Void> deleteOne(String id) {
     Product product;
     product = productRepository.findById(id);
-    if (product != null) {
-      productRepository.delete(product);
+    if (product == null) {
+      throw new NotFoundException();
     }
+    productRepository.delete(product);
     return ResponseEntity.accepted().build();
   }
 }
