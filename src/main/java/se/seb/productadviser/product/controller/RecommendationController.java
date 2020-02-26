@@ -1,6 +1,7 @@
 package se.seb.productadviser.product.controller;
 
 import java.util.Set;
+import javax.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +22,8 @@ public class RecommendationController {
   }
 
   @PostMapping
-  public ResponseEntity<Set<ProductDto>> getRecommendations(@RequestBody CustomerDto customerDto) {
+  public ResponseEntity<Set<ProductDto>> getRecommendations(
+      @RequestBody @Valid CustomerDto customerDto) {
     return recommendationService.advise(customerDto);
   }
 }

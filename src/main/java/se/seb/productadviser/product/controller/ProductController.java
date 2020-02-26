@@ -1,6 +1,7 @@
 package se.seb.productadviser.product.controller;
 
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,12 +35,13 @@ public class ProductController {
   }
 
   @PostMapping
-  public ResponseEntity<Void> postOne(@RequestBody ProductDto productDto) {
+  public ResponseEntity<Void> postOne(@RequestBody @Valid ProductDto productDto) {
     return restProductService.postOne(productDto);
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<Void> putOne(@PathVariable String id, @RequestBody ProductDto productDto) {
+  public ResponseEntity<Void> putOne(@PathVariable String id,
+      @RequestBody @Valid ProductDto productDto) {
     return restProductService.putOne(productDto, id);
   }
 
